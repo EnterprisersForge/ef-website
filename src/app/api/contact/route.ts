@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { verifyMathChallenge } from "@/lib/captcha";
 import { saveSubmission, sendContactEmail } from "@/lib/contact";
 
 type ContactBody = {
@@ -7,6 +8,9 @@ type ContactBody = {
   company?: string;
   message?: string;
   interests?: string[];
+  captchaToken?: string;
+  captchaAnswer?: string;
+  website?: string;
 };
 
 function isValidEmail(email: string): boolean {
@@ -16,6 +20,27 @@ function isValidEmail(email: string): boolean {
 export async function POST(request: Request) {
   try {
     const body: ContactBody = await request.json();
+
+    if (body.website?.trim()) {
+      return NextResponse.json({ error: "Verification failed." }, { status: 400 });
+    }
+
+    const captchaToken = body.captchaToken?.trim();
+    const captchaAnswer = body.captchaAnswer?.trim();
+
+    if (!captchaToken || !captchaAnswer) {
+      return NextResponse.json(
+        { error: "Please complete the human verification challenge." },
+        { status: 400 }
+      );
+    }
+
+    if (!verifyMathChallenge(captchaToken, captchaAnswer)) {
+      return NextResponse.json(
+        { error: "Incorrect or expired verification answer. Please try again." },
+        { status: 400 }
+      );
+    }
 
     const name = body.name?.trim();
     const email = body.email?.trim();

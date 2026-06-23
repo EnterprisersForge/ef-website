@@ -1,5 +1,4 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { createSupabaseAdmin } from "@/lib/supabase/server";
 
 export type ContactSubmission = {
   id: string;
@@ -11,32 +10,50 @@ export type ContactSubmission = {
   createdAt: string;
 };
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const SUBMISSIONS_FILE = path.join(DATA_DIR, "contact-submissions.json");
+type ContactSubmissionRow = {
+  id: string;
+  name: string;
+  email: string;
+  company: string;
+  message: string;
+  interests: string[];
+  created_at: string;
+};
+
+function mapRow(row: ContactSubmissionRow): ContactSubmission {
+  return {
+    id: row.id,
+    name: row.name,
+    email: row.email,
+    company: row.company,
+    message: row.message,
+    interests: row.interests ?? [],
+    createdAt: row.created_at,
+  };
+}
 
 export async function saveSubmission(
   data: Omit<ContactSubmission, "id" | "createdAt">
 ): Promise<ContactSubmission> {
-  await fs.mkdir(DATA_DIR, { recursive: true });
+  const supabase = createSupabaseAdmin();
 
-  let submissions: ContactSubmission[] = [];
-  try {
-    const raw = await fs.readFile(SUBMISSIONS_FILE, "utf-8");
-    submissions = JSON.parse(raw);
-  } catch {
-    submissions = [];
+  const { data: row, error } = await supabase
+    .from("contact_submissions")
+    .insert({
+      name: data.name,
+      email: data.email,
+      company: data.company,
+      message: data.message,
+      interests: data.interests,
+    })
+    .select("id, name, email, company, message, interests, created_at")
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
   }
 
-  const submission: ContactSubmission = {
-    id: crypto.randomUUID(),
-    createdAt: new Date().toISOString(),
-    ...data,
-  };
-
-  submissions.push(submission);
-  await fs.writeFile(SUBMISSIONS_FILE, JSON.stringify(submissions, null, 2), "utf-8");
-
-  return submission;
+  return mapRow(row as ContactSubmissionRow);
 }
 
 export async function sendContactEmail(submission: ContactSubmission): Promise<boolean> {
