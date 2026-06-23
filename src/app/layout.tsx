@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { siteConfig } from "@/lib/data";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -44,6 +45,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <RevealOnScroll />
+        <SpeedInsights />
       </body>
     </html>
   );
