@@ -35,7 +35,7 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="reveal mb-20">
+          {/* <div className="reveal mb-20">
             <span className="section-eyebrow mb-5 inline-flex">👥 Leadership</span>
             <h2 className="font-display text-3xl font-bold tracking-tight mt-5 mb-10">
               Meet the <span className="grad-text">Team</span>
@@ -52,7 +52,7 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div id="careers" className="reveal mb-20">
             <div className="glass rounded-2xl p-10 border border-[rgba(148,163,184,0.1)]">
@@ -76,7 +76,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div id="partners" className="reveal">
+          {/* <div id="partners" className="reveal">
             <div className="glass rounded-2xl p-10 border border-[rgba(148,163,184,0.1)]">
               <h3 className="font-display text-2xl font-bold mb-3">Partners</h3>
               <p className="text-[#64748B] mb-6 max-w-[600px]">
@@ -86,7 +86,7 @@ export default function AboutPage() {
                 Become a Partner →
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </>

@@ -13,21 +13,26 @@ export const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+// export const heroStats = [
+//   { value: "150+", label: "Enterprise Clients" },
+//   { value: "$2.4B+", label: "Revenue Processed" },
+//   { value: "98%", label: "Retention Rate" },
+// ];
 export const heroStats = [
-  { value: "150+", label: "Enterprise Clients" },
-  { value: "$2.4B+", label: "Revenue Processed" },
-  { value: "98%", label: "Retention Rate" },
+  { value: "B2B", label: "eCommerce Solutions" },
+  { value: "ERP", label: "Integrations" },
+  { value: "AI", label: "Automation" },
 ];
 
 export const trustedClients = [
-  { name: "Meridian", tag: "Logistics" },
-  { name: "Veractis", tag: "HealthTech" },
-  { name: "NovaPlex", tag: "Finance" },
-  { name: "Cortexia", tag: "AI Labs" },
+  { name: "Silmar Electronics", tag: "Technology" },
+  { name: "Rubber Inc.", tag: "B2B Ecommerce" },
+  { name: "SAC Netsuite Integration", tag: "Finance" },
+  { name: "Auraq", tag: "Book Publishing" },
   { name: "HarborSky", tag: "Retail" },
-  { name: "Syncbridge", tag: "SaaS" },
+  { name: "Enterpristore", tag: "SaaS" },
   { name: "Orbis Group", tag: "Manufacturing" },
-  { name: "Quantifi", tag: "InsureTech" },
+  { name: "CarnivalUtopia", tag: "Events Booking" },
 ];
 
 export const services = [
@@ -163,10 +168,10 @@ export const starterPlan = {
 export const techStack = [
   { icon: "🎨", title: "Frontend", layer: "Layer 1", layerClass: "tag-cyan", borderColor: "rgba(6,182,212,0.15)", tags: ["React 18", "Next.js 14", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "GraphQL"] },
   { icon: "📱", title: "Mobile", layer: "Layer 2", layerClass: "tag-violet", borderColor: "rgba(124,58,237,0.15)", tags: ["Flutter", "React Native", "SwiftUI", "Jetpack Compose", "Expo", "Firebase"] },
-  { icon: "⚙️", title: "Backend", layer: "Layer 3", layerClass: "tag-green", borderColor: "rgba(16,185,129,0.15)", tags: ["Node.js", "Python / FastAPI", "Go", "REST / gRPC", "PostgreSQL", "Redis", "Kafka"] },
-  { icon: "🧠", title: "AI & Automation", layer: "Layer 4", layerClass: "tag-amber", borderColor: "rgba(245,158,11,0.15)", tags: ["OpenAI GPT-4", "Anthropic Claude", "LangChain", "n8n / Zapier", "Pinecone", "Hugging Face"] },
+  { icon: "⚙️", title: "Backend", layer: "Layer 3", layerClass: "tag-green", borderColor: "rgba(16,185,129,0.15)", tags: ["Node.js","PHP", "Laravel", "Python / FastAPI", "Go", "REST / gRPC", "PostgreSQL", "Redis"] },
+  { icon: "🧠", title: "AI & Automation", layer: "Layer 4", layerClass: "tag-amber", borderColor: "rgba(245,158,11,0.15)", tags: ["OpenAI GPT-5", "Anthropic Claude", "LangChain", "n8n / Zapier", "Gemini", "Hugging Face"] },
   { icon: "☁️", title: "Cloud & Infra", layer: "Layer 5", layerClass: "", borderColor: "rgba(148,163,184,0.12)", tags: ["AWS", "GCP", "Azure", "Docker / K8s", "Terraform", "Vercel / Cloudflare"] },
-  { icon: "🔗", title: "ERP & Systems", layer: "Layer 6", layerClass: "", borderColor: "rgba(148,163,184,0.12)", tags: ["NetSuite", "Infor CloudSuite", "SAP S/4HANA", "Salesforce", "Workday", "MuleSoft"] },
+  { icon: "🔗", title: "ERP & Systems", layer: "Layer 6", layerClass: "", borderColor: "rgba(148,163,184,0.12)", tags: ["NetSuite", "Infor CloudSuite", "SAP S/4HANA", "Salesforce", "Workday"] },
 ];
 
 export const architecturePhilosophy = [

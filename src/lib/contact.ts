@@ -82,7 +82,7 @@ export async function sendContactEmail(submission: ContactSubmission): Promise<b
     from: `"EnterprisersForge Contact" <${SMTP_USER}>`,
     to: CONTACT_TO_EMAIL,
     replyTo: submission.email,
-    subject: `New Discovery Request from ${submission.name}`,
+    subject: `New Contact Request from ${submission.name}`,
     text: [
       `Name: ${submission.name}`,
       `Email: ${submission.email}`,
@@ -93,7 +93,7 @@ export async function sendContactEmail(submission: ContactSubmission): Promise<b
       submission.message,
     ].join("\n"),
     html: `
-      <h2>New Discovery Request</h2>
+      <h2>New Contact Request</h2>
       <p><strong>Name:</strong> ${submission.name}</p>
       <p><strong>Email:</strong> <a href="mailto:${submission.email}">${submission.email}</a></p>
       <p><strong>Company:</strong> ${submission.company || "Not provided"}</p>
