@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd, StarterPlanJsonLd } from "@/components/JsonLd";
 import { StarterPlanSection } from "@/components/sections/StarterPlanSection";
+import { createPageMetadata, pageSeo } from "@/lib/seo";
 import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "Business Starter Plan — EnterprisersForge",
-  description: "Everything your business needs to launch, grow, and compete — in one cohesive package.",
-};
+export const metadata: Metadata = createPageMetadata(pageSeo.starterPlan);
 
 export default function StarterPlanPage() {
   return (
     <>
+      <StarterPlanJsonLd />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Business Starter Plan", path: "/starter-plan" },
+        ]}
+      />
       <PageHero
         eyebrow="🚀 Featured Package"
         title={
