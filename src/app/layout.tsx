@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/Footer";
+import { SiteJsonLd } from "@/components/JsonLd";
 import { Navbar } from "@/components/Navbar";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
-import { siteConfig } from "@/lib/data";
+import { rootMetadata } from "@/lib/seo";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import "./globals.css";
 
@@ -25,11 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-export const metadata: Metadata = {
-  title: `${siteConfig.name} — ${siteConfig.tagline}`,
-  description:
-    "From AI-powered workflows and deep ERP integrations to mobile apps and e-commerce — EnterprisersForge engineers the full stack of your business growth.",
-};
+export const metadata: Metadata = rootMetadata;
 
 export default function RootLayout({
   children,
@@ -41,6 +38,7 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <SiteJsonLd />
         <Navbar />
         <main>{children}</main>
         <Footer />

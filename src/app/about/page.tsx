@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AboutPageJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd";
 import { aboutContent } from "@/lib/data";
+import { createPageMetadata, pageSeo } from "@/lib/seo";
 import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "About Us — EnterprisersForge",
-  description: "Engineering the systems that power enterprise growth.",
-};
+export const metadata: Metadata = createPageMetadata(pageSeo.about);
 
 export default function AboutPage() {
   return (
     <>
+      <AboutPageJsonLd />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "About Us", path: "/about" },
+        ]}
+      />
       <PageHero
         eyebrow="🏢 Our Story"
         title={

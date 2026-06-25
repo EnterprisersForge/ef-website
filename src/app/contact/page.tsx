@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd, ContactPageJsonLd } from "@/components/JsonLd";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { siteConfig } from "@/lib/data";
+import { createPageMetadata, pageSeo } from "@/lib/seo";
 import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "Contact — EnterprisersForge",
-  description: "Book a free discovery call. We respond within 4 business hours.",
-};
+export const metadata: Metadata = createPageMetadata(pageSeo.contact);
 
 export default function ContactPage() {
   return (
     <>
+      <ContactPageJsonLd />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ]}
+      />
       <PageHero
         eyebrow="📞 Get in Touch"
         title={

@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbJsonLd, CaseStudiesJsonLd } from "@/components/JsonLd";
 import { caseStudies } from "@/lib/data";
+import { createPageMetadata, pageSeo } from "@/lib/seo";
 import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "Case Studies — EnterprisersForge",
-  description: "Built for impact. Proven in production.",
-};
+export const metadata: Metadata = createPageMetadata(pageSeo.caseStudies);
 
 export default function CaseStudiesPage() {
   return (
     <>
+      <CaseStudiesJsonLd />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Case Studies", path: "/case-studies" },
+        ]}
+      />
       <PageHero
         eyebrow="📊 Case Studies"
         title={

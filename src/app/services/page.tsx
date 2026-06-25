@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ServicesDetailContent } from "@/components/sections/ServicesDetailContent";
+import { createPageMetadata, pageSeo } from "@/lib/seo";
 import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "Services — EnterprisersForge",
-  description: "End-to-end engineering for complex enterprises. Web, mobile, AI, ERP, and API integrations.",
-};
+export const metadata: Metadata = createPageMetadata(pageSeo.services);
 
 export default function ServicesPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+        ]}
+      />
       <PageHero
         eyebrow="🛠 Our Services"
         title={
