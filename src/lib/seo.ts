@@ -10,7 +10,7 @@ import {
 } from "./data";
 
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://enterprisersforge.com";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://www.enterprisersforge.com";
 
 export const defaultDescription =
   "From AI-powered workflows and deep ERP integrations to mobile apps and e-commerce — EnterprisersForge engineers the full stack of your business growth.";
@@ -46,16 +46,6 @@ export const defaultKeywords = [
   ...serviceKeywords,
   ...techKeywords,
   ...industryKeywords,
-];
-
-export const siteRoutes = [
-  { path: "/", changeFrequency: "weekly" as const, priority: 1 },
-  { path: "/services", changeFrequency: "monthly" as const, priority: 0.9 },
-  { path: "/starter-plan", changeFrequency: "monthly" as const, priority: 0.9 },
-  { path: "/tech-stack", changeFrequency: "monthly" as const, priority: 0.8 },
-  { path: "/case-studies", changeFrequency: "monthly" as const, priority: 0.8 },
-  { path: "/about", changeFrequency: "monthly" as const, priority: 0.7 },
-  { path: "/contact", changeFrequency: "monthly" as const, priority: 0.8 },
 ];
 
 type PageSeoInput = {
