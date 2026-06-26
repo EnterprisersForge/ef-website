@@ -21,13 +21,17 @@ export function Navbar() {
     setMenuOpen(false);
   }, [pathname]);
 
+  const showNavBackground = scrolled || menuOpen;
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-[100] px-6 py-4 transition-all duration-300 ${
-        scrolled ? "bg-[rgba(10,15,30,0.92)] backdrop-blur-[20px] shadow-[0_1px_0_rgba(148,163,184,0.08)]" : ""
+        showNavBackground
+          ? "bg-[rgba(10,15,30,0.95)] backdrop-blur-[20px] shadow-[0_1px_0_rgba(148,163,184,0.08)]"
+          : ""
       }`}
     >
-      <div className="container-main flex items-center justify-between !px-0">
+      <div className="container-main flex items-center justify-between !px-0 min-h-[44px]">
         <Logo />
 
         <div className="hidden lg:flex items-center gap-9">
@@ -72,22 +76,43 @@ export function Navbar() {
         </button>
       </div>
 
-      {menuOpen && (
-        <div className="lg:hidden flex flex-col gap-0 pt-2 pb-4 border-t border-[rgba(148,163,184,0.1)] mt-3 container-main !px-0">
-          {navLinks.map((link) => (
+      <div
+        className={`lg:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${
+          menuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div
+            className={`flex flex-col gap-3 pt-6 pb-5 mt-5 border-t border-[rgba(148,163,184,0.12)] container-main !px-0 transition-opacity duration-300 ease-out ${
+              menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+            }`}
+          >
+            {navLinks.map((link, index) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`py-3.5 px-4 rounded-xl no-underline font-display text-base transition-colors ${
+                  menuOpen ? "mobile-menu-link-enter" : ""
+                } ${
+                  pathname === link.href
+                    ? "bg-[rgba(6,182,212,0.12)] text-white border border-[rgba(6,182,212,0.3)]"
+                    : "bg-[rgba(15,22,41,0.9)] text-[#E2E8F0] border border-[rgba(148,163,184,0.12)] hover:text-white hover:border-[rgba(148,163,184,0.25)]"
+                }`}
+                style={menuOpen ? { animationDelay: `${80 + index * 55}ms` } : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
             <Link
-              key={link.href}
-              href={link.href}
-              className="py-3.5 px-1.5 text-[#CBD5E1] no-underline font-display text-base border-b border-[rgba(148,163,184,0.06)]"
+              href="/contact"
+              className={`btn-primary text-center justify-center mt-2 ${menuOpen ? "mobile-menu-link-enter" : ""}`}
+              style={menuOpen ? { animationDelay: `${80 + navLinks.length * 55}ms` } : undefined}
             >
-              {link.label}
+              Book a Discovery Call →
             </Link>
-          ))}
-          <Link href="/contact" className="btn-primary text-center justify-center mt-2">
-            Book a Discovery Call →
-          </Link>
+          </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
